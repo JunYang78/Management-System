@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Encryption Tool</title>
+
+<style>                                            /*CSS*/
+
+        body {
+
+            font-family: 'Arial', sans-serif;
+
+            margin: 0;
+
+            padding: 50px;
+
+            background-color: #f4f4f4;
+
+        }
+
+        .dashboard-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: space-around;
+
+        }
+
+        .control-section {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background-color: #fff;
+
+            padding: 20px;
+
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+            border-radius: 8px;
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            margin-bottom: 20px;
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .button-group {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+        .button {
+
+            background-color: #007bff;
+
+            color: #ffffff;
+
+            border: none;
+
+            padding: 10px 20px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+        button:hover {
+
+            background-color: #0056b3;
+
+        }
+
+                .toggle {
+
+            background-color: #dc3545; /* Red for Off */
+
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <div class="content-section">
+            <form method="POST" action="/encryptor">
+                <h1>Encrypt</h1> 
+                <textarea id="usertext" name="usertext" rows="7" cols="80"></textarea><br>
+                <label for="password">Create Password:</label><br>
+                <textarea id="password" name="password"></textarea><br>
+                <input type="submit" value="Encrypt">
+            </form><br>
+            <label for="encrypted-text">Encrypted Text:</label><br>
+            <textarea id="encrypted-text" name="encrypted-text" rows="3" cols="50">{{ encText }}</textarea>
+            <button onclick="copyText()">Copy</button><br><br>
+            <form method="POST" action="/decryptor">
+                <h1>Decrypt</h1> 
+                <textarea id="usertext" name="usertext" rows="7" cols="80"></textarea><br>
+                <label for="password">Enter Password:</label><br>
+                <textarea id="password" name="password"></textarea><br>
+                <input type="submit" value="Decrypt">
+            </form><br>
+            <label for="decrypted-text">Decrypted Text:</label><br>
+            <textarea id="decrypted-text" name="decrypted-text" rows="3" cols="50">{{ decText }}</textarea><br>
+            <br>
+            <br>
+            <a href="/" class="button">Back to Main Menu</a>
+        </div>
+
+        <div class="content-section">
+            <h1>This is an Encryption tool using Fernet.</h1>
+        </div>
+    </div>
+
+    <script>
+        function copyText() {
+
+            /* Select text area by id*/
+            var Text = document.getElementById("encrypted-text");
+
+            /* Select the text inside text area. */
+            Text.select();
+
+            /* Copy selected text into clipboard */
+            navigator.clipboard.writeText(Text.value);
+
+            /* Set the copied text as text for 
+            div with id clipboard */
+            document.getElementById("clipboard")
+                .innerHTML = Text.value;
+        }
+    </script>
+
+</body>
+
+</html>
