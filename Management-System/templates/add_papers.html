@@ -1,0 +1,21 @@
+{% extends "template.html" %}
+{% block action %}"/addPaperReq"{% endblock %}
+{% block function %}"Add"{% endblock %}
+{% block exitfunction %}"Back"{% endblock %}
+{% block exit %}"/homeAdmin"{% endblock %}
+{% block fields %}
+    <br>
+    ID:
+    <br>
+    <input type="text" class="form-control" name="id">
+    <br>
+    Name:
+    <br>
+    <textarea class="form-control" name="name" ></textarea>
+    <br>
+    Age:
+    <br>
+    <textarea class="form-control" name="age"></textarea>
+    <br>
+
+{% endblock %}
